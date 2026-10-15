@@ -1,6 +1,6 @@
 # 公開網站設定與首次登入
 
-狀態：部署來源已備妥，尚未建立 Render 資源、尚未扣款、尚未取得公開網址。不能把本機 127.0.0.1 分享給其他網路的玩家。
+狀態（2026-10-16）：Render Free + Neon Free 已部署。玩家網址 https://party-island-platform.onrender.com/ ，管理端 https://party-island-platform.onrender.com/admin/ 。程式來源 https://github.com/qa07041018-jpg/party-island ，執行版本 cbe7085。未建立付費資源。
 
 **目前約束：初期預算為 0。以下免費公開測試方案取代先前的付費常駐規格；不得建立付費資源或自動升級。**
 
@@ -8,7 +8,7 @@
 
 免費方案限制：Render 15 分鐘無入站流量會休眠，再次開啟可能等待約 1 分鐘，可能重啟，且有每月用量上限。Neon Free 現行方案不需信用卡、沒有固定試用期限，但有運算／儲存配額，不能承諾永久不變或無限容量。額度不足時停止測試並處理資料備份，不自動改成付費。Render 免費 Postgres 30 天到期，因此不拿它保存需要持續保留的玩家資料。
 
-## 使用者目前只需完成
+## 帳號與來源設定
 
 1. Render 帳號已註冊。先保持目前 Dashboard，不選 Upgrade，也不新增付款方式。
 2. 開啟 https://console.neon.tech/signup ，註冊 Neon，選 **Free**，建立 PostgreSQL 專案；如畫面要求付費、信用卡或升級就停下確認。不要把密碼、驗證碼或資料庫連線字串貼到聊天。
@@ -26,7 +26,7 @@ Render Blueprint 需要可連接的 Git 儲存庫。使用者已選擇公開原�
 - Neon PostgreSQL 以平台提供的 TLS 連線字串驗證連線，不關閉憑證驗證；連線字串僅存 Render Environment。JWT 祕密不進原始碼，首次建立在 Dashboard 填寫至少 48 字元亂數。管理員 email 在 Dashboard 填寫；密碼由平台隨機產生。
 - CSP 以建置後 HTML 的 inline script SHA-256 白名單授權 Next 啟動腳本，不需開放任意 inline JavaScript。
 
-Blueprint 已改為 Free；沒有任何付費規格或平台資料庫宣告。尚未執行建立或付款動作。此階段為免費公開測試，需接受休眠及配額，不能宣稱達到 24 小時不中斷的正式營運目標。網站在雲端執行，不需要這台電腦開機。
+Blueprint 已改為 Free；沒有任何付費規格或平台資料庫宣告。已建立單一 Free Web Service，未設定付款方式。此階段為免費公開測試，需接受休眠及配額，不能宣稱達到 24 小時不中斷的正式營運目標。網站在雲端執行，不需要這台電腦開機。
 
 ## 第一次如何登入
 
@@ -49,6 +49,10 @@ Blueprint 已改為 Free；沒有任何付費規格或平台資料庫宣告。�
 5. 重啟服務，確認 Neon 資料持久化，實際匯出備份並驗證還原；本方案不啟用 Redis。
 6. 解決或評估既有依賴公告，確認代理下限流、保留政策和公開測試範圍。
 
-目前只完成本機部署形態驗證；上述公網、Render Free、Neon Free 驗收仍待帳號連接與實際部署。
+已在實際 HTTPS 公網通過：/health、兩個不同帳號註冊與登入、UID、遊戲大廳、一般玩家禁止存取管理 API、私人房間進房、兩個 WebSocket 即時傳訊、資料庫聊天快照及斷線重連。瀏覽器實測管理員登入與玩家首頁登入成功。驗證帳號名稱為公網驗證甲／乙，非假在線數；測試房間已離房關閉，工作階段已撤銷。
+
+尚未完成：手機行動網路與另一實體網路的真機驗收、備份還原演練、長時間負載及依賴安全審查。語音、狼人殺、誰是臥底及你畫我猜仍未實作，不能宣稱可玩。
+
+本次以 Public Git Repository 連接 Render，後續更新請在 Manual Deploy 選 Deploy latest commit；不可假定 git push 就會自動上線。Neon 網址可能在畫面換行，設定後必須確認完整主機以 .neon.tech 結尾、包含 /neondb 及 sslmode=require，避免誤存截斷網址。管理員專屬初始密碼保存在 Render Environment 的 ADMIN_PASSWORD，與 Gmail 密碼分開。
 
 官方參考：https://render.com/docs/blueprint-spec 、 https://render.com/docs/websocket 、 https://render.com/docs/free 、 https://neon.com/pricing 。
