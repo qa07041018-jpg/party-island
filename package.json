@@ -1,0 +1,21 @@
+{
+  "name": "party-island-platform",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "cloud:build": "node scripts/cloud-build.mjs",
+    "build": "pnpm --filter @island/api build && pnpm --filter @island/admin build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm --filter @island/api test",
+    "test:integration": "pnpm --filter @island/api test:integration",
+    "dev:api": "pnpm --filter @island/api dev",
+    "dev:mobile": "pnpm --filter @island/mobile start",
+    "dev:admin": "pnpm --filter @island/admin dev",
+    "db:migrate": "pnpm --filter @island/api migrate",
+    "admin:create": "pnpm --filter @island/api admin:create"
+  },
+  "devDependencies": {
+    "prettier": "3.6.0"
+  }
+}

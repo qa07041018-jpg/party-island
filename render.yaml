@@ -1,0 +1,30 @@
+# Zero-budget public testing. Never upgrade or add paid resources automatically.
+# PostgreSQL is supplied separately through a Neon Free connection string.
+services:
+  - type: web
+    name: party-island-platform
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: corepack enable && corepack prepare pnpm@11.25.0 --activate && pnpm install --frozen-lockfile --prod=false && node scripts/cloud-build.mjs
+    startCommand: node apps/api/dist/scripts/cloud-start.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: NODE_ENV
+        value: production
+      - key: SERVE_WEB
+        value: "1"
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        value: ""
+      - key: JWT_SECRET
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        generateValue: true

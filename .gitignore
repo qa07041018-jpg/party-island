@@ -1,0 +1,12 @@
+node_modules/
+.env*
+!.env.example
+dist/
+.next/
+.expo/
+web-build/
+apps/admin/out/
+apps/mobile/cloud-dist/
+*.log
+coverage/
+*.tsbuildinfo

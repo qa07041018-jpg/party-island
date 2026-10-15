@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "玩伴島 Party Island",
+    "slug": "party-island",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "ios": {
+      "bundleIdentifier": "com.partyisland.app",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "未來語音房間功能需使用麥克風；本版本尚未啟用語音。"
+      }
+    },
+    "android": { "package": "com.partyisland.app" },
+    "web": { "bundler": "metro", "name": "玩伴島" },
+    "plugins": ["expo-secure-store"]
+  }
+}
