@@ -12,9 +12,9 @@
 
 1. Render 帳號已註冊。先保持目前 Dashboard，不選 Upgrade，也不新增付款方式。
 2. 開啟 https://console.neon.tech/signup ，註冊 Neon，選 **Free**，建立 PostgreSQL 專案；如畫面要求付費、信用卡或升級就停下確認。不要把密碼、驗證碼或資料庫連線字串貼到聊天。
-3. 確認 GitHub/GitLab 帳號及私有原始碼儲存庫連接方式，再建立 Render **Free Web Service**。只選 Free；若免費資格不成立或平台要求付費則不繼續建立。
+3. 使用已建立的公開 GitHub 儲存庫 qa07041018-jpg/party-island，完成原始碼寫入授權，再建立 Render **Free Web Service**。只選 Free；若免費資格不成立或平台要求付費則不繼續建立。
 
-Render Blueprint 需要可連接的 Git 儲存庫。若還沒有 GitHub/GitLab 帳號，下一步一起完成來源連接；此資料夾目前沒有設定任何遠端，不會擅自上傳私有環境檔。
+Render Blueprint 需要可連接的 Git 儲存庫。使用者已選擇公開原始碼；發布版本必須排除 .env、本機帳密、連線字串、執行資料及快取，僅保留不含真實憑證的 .env.example。
 
 ## 已準備的部署內容
 
